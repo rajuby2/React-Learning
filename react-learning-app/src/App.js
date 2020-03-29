@@ -3,7 +3,22 @@ import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person'
 
+
 class App extends Component {
+  state = {
+    person:[
+      {name:"Rajkumar", age:33},
+      {name:"Mithra", age:4},
+      {name:"Vaishnavi", age:32},
+    ]
+  }
+  persons=[]
+  
+  personsBuilder = ()=> { 
+    this.state.person.forEach(element => this.persons.push(<Person name={element.name} age={element.age}/>))
+    return <div>{this.persons}</div>;
+ }
+
   render() {
     return (
       <div className="App">
@@ -13,7 +28,7 @@ class App extends Component {
         </header>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
-          <Person></Person>
+          {this.personsBuilder()}                
         </p>
       </div>
     );
